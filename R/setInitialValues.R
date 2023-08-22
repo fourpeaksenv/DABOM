@@ -43,21 +43,21 @@ setInitialValues = function(filter_ch,
     map(.f = function(x) x + 1)
 
   # look at estimated spawn location, and the sites tag must have crossed to get there
-  spawn_node = estimateSpawnLoc(filter_ch) %>%
-    select(tag_code, spawn_node) %>%
+  spawn_node = PITcleanr::estimateFinalLoc(filter_ch) %>%
+    select(tag_code, final_node) %>%
     distinct() %>%
-    mutate(spawn_site = if_else(grepl("B0$", spawn_node) &
-                                  nchar(spawn_node) >= 5,
-                                str_remove(spawn_node, "B0"),
-                                spawn_node),
+    mutate(spawn_site = if_else(grepl("B0$", final_node) &
+                                  nchar(final_node) >= 5,
+                                str_remove(final_node, "B0"),
+                                final_node),
            spawn_site = if_else(grepl("A0$", spawn_site) &
                                   nchar(spawn_site) >= 5,
                                 str_remove(spawn_site, "A0"),
                                 spawn_site)) %>%
     left_join(no %>%
-                select(spawn_node = node,
+                select(final_node = node,
                        spawn_path = path),
-              by = "spawn_node") %>%
+              by = "final_node") %>%
     separate_rows(spawn_path) %>%
     rename(node = spawn_path) %>%
     left_join(no %>%
