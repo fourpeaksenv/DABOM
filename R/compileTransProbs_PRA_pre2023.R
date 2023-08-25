@@ -1,4 +1,15 @@
-#copying the old version of compileTransProbs_PRA here for all years before 2023 when new sites were not added.
+#' @title Compile Transition Probabilities - PRA pre 2023
+#'
+#' @description Extracts the MCMC posteriors of transition probabilities for a DABOM model, and multiplies them appropriately. This function is specific to the Priest Rapids version of DABOM. Copied from the old version of compileTransProbs_PRA here for all years before 2023 when new sites were not added.
+#'
+#' @author Kevin See
+#'
+#' @param dabom_mod An MCMC.list
+#' @inheritParams createDABOMcapHist
+#'
+#' @import dplyr tidyr purrr
+#' @export
+#' @return NULL
 
 compileTransProbs_PRA_pre2023 = function (dabom_mod = NULL, parent_child = NULL)
 {
