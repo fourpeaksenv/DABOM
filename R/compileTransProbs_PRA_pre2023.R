@@ -1,6 +1,6 @@
 #copying the old version of compileTransProbs_PRA here for all years before 2023 when new sites were not added.
 
-function (dabom_mod = NULL, parent_child = NULL)
+compileTransProbs_PRA_pre2023 = function (dabom_mod = NULL, parent_child = NULL)
 {
   stopifnot(!is.null(dabom_mod), !is.null(parent_child))
   if (class(dabom_mod) == "jagsUI")
